@@ -60,14 +60,54 @@
 			children = (
 				48C39C6D27FA205D00099544 /* AppDelegate.swift */,
 				48C39C6F27FA205D00099544 /* SceneDelegate.swift */,
-				48C39C7127FA205D00099544 /* ViewController.swift */,
-				48C39C7327FA205D00099544 /* Main.storyboard */,
-				48C39C7927FA205E00099544 /* Assets.xcassets */,
-				48C39C7B27FA205E00099544 /* LaunchScreen.storyboard */,
+				48C39C8C27FA241D00099544 /* Model */,
+				48C39C8D27FA242900099544 /* Controller */,
+				48C39C8E27FA243300099544 /* View */,
+				48C39C9027FA244400099544 /* Storyboards */,
+				48C39C8F27FA243900099544 /* Assets */,
 				48C39C7E27FA205E00099544 /* Info.plist */,
-				48C39C7627FA205D00099544 /* ScoreBoardgame.xcdatamodeld */,
 			);
 			path = ScoreBoardgame;
+			sourceTree = "<group>";
+		};
+		48C39C8C27FA241D00099544 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48C39C7627FA205D00099544 /* ScoreBoardgame.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48C39C8D27FA242900099544 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48C39C7127FA205D00099544 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		48C39C8E27FA243300099544 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48C39C8F27FA243900099544 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				48C39C7927FA205E00099544 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		48C39C9027FA244400099544 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				48C39C7327FA205D00099544 /* Main.storyboard */,
+				48C39C7B27FA205E00099544 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
