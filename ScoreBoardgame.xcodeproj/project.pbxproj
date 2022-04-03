@@ -9,23 +9,31 @@
 /* Begin PBXBuildFile section */
 		48C39C6E27FA205D00099544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C6D27FA205D00099544 /* AppDelegate.swift */; };
 		48C39C7027FA205D00099544 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C6F27FA205D00099544 /* SceneDelegate.swift */; };
-		48C39C7227FA205D00099544 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C7127FA205D00099544 /* ViewController.swift */; };
 		48C39C7527FA205D00099544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7327FA205D00099544 /* Main.storyboard */; };
 		48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C7627FA205D00099544 /* ScoreBoardgame.xcdatamodeld */; };
 		48C39C7A27FA205E00099544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7927FA205E00099544 /* Assets.xcassets */; };
 		48C39C7D27FA205E00099544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7B27FA205E00099544 /* LaunchScreen.storyboard */; };
+		48FC89D827FA488C00D66A36 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89D727FA488C00D66A36 /* ScoreViewController.swift */; };
+		48FC89DB27FA48A500D66A36 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89DA27FA48A500D66A36 /* SearchViewController.swift */; };
+		48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */; };
+		48FC89DF27FA492400D66A36 /* MethodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89DE27FA492400D66A36 /* MethodAPI.swift */; };
+		48FC89E127FA496D00D66A36 /* AtlasClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89E027FA496D00D66A36 /* AtlasClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		48C39C6A27FA205D00099544 /* ScoreBoardgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreBoardgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C39C6D27FA205D00099544 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C39C6F27FA205D00099544 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		48C39C7127FA205D00099544 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48C39C7427FA205D00099544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C39C7727FA205D00099544 /* ScoreBoardgame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScoreBoardgame.xcdatamodel; sourceTree = "<group>"; };
 		48C39C7927FA205E00099544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C39C7C27FA205E00099544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C39C7E27FA205E00099544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48FC89D727FA488C00D66A36 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		48FC89DA27FA48A500D66A36 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		48FC89DE27FA492400D66A36 /* MethodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodAPI.swift; sourceTree = "<group>"; };
+		48FC89E027FA496D00D66A36 /* AtlasClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtlasClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +91,9 @@
 		48C39C8D27FA242900099544 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				48C39C7127FA205D00099544 /* ViewController.swift */,
+				48FC89D727FA488C00D66A36 /* ScoreViewController.swift */,
+				48FC89DA27FA48A500D66A36 /* SearchViewController.swift */,
+				48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -115,6 +125,8 @@
 		48C39C9327FA26D300099544 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				48FC89DE27FA492400D66A36 /* MethodAPI.swift */,
+				48FC89E027FA496D00D66A36 /* AtlasClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -197,8 +209,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48C39C7227FA205D00099544 /* ViewController.swift in Sources */,
+				48FC89DB27FA48A500D66A36 /* SearchViewController.swift in Sources */,
+				48FC89E127FA496D00D66A36 /* AtlasClient.swift in Sources */,
 				48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */,
+				48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */,
+				48FC89D827FA488C00D66A36 /* ScoreViewController.swift in Sources */,
+				48FC89DF27FA492400D66A36 /* MethodAPI.swift in Sources */,
 				48C39C6E27FA205D00099544 /* AppDelegate.swift in Sources */,
 				48C39C7027FA205D00099544 /* SceneDelegate.swift in Sources */,
 			);
