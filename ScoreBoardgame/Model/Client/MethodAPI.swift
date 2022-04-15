@@ -21,8 +21,7 @@ class MethodAPI {
     
     // MARK: Request Method GET
     
-    public class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion:
-                                                                 @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
+    public class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
