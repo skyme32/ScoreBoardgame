@@ -12,6 +12,7 @@
         <attribute name="playtime" optional="YES" attributeType="String"/>
         <attribute name="publisher" optional="YES" attributeType="String"/>
         <attribute name="rules_url" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="year_published" optional="YES" attributeType="String"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="boardgame" inverseEntity="Game"/>
     </entity>
@@ -31,7 +32,7 @@
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="scores" inverseEntity="Game"/>
     </entity>
     <elements>
-        <element name="Boardgame" positionX="-63.31982421875" positionY="-16.202392578125" width="128" height="238"/>
+        <element name="Boardgame" positionX="-63.31982421875" positionY="-16.202392578125" width="128" height="239"/>
         <element name="Game" positionX="154.308837890625" positionY="-15.65155029296875" width="128" height="163"/>
         <element name="Score" positionX="360.75390625" positionY="-31.083984375" width="128" height="88"/>
     </elements>

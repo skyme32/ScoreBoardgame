@@ -65,14 +65,54 @@
         <!--Search Boardgames-->
         <scene sceneID="Ons-Am-nlj">
             <objects>
-                <viewController title="Search Boardgames" id="xJs-zs-f8X" sceneMemberID="viewController">
+                <viewController title="Search Boardgames" id="xJs-zs-f8X" customClass="SearchViewController" customModule="ScoreBoardgame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sXF-an-nCo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Erh-OA-UHx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xJs-zs-f8X" id="pTK-v5-LCm"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hR1-WV-d24">
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameTableViewCell" id="At9-AS-5BT">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="At9-AS-5BT" id="REc-kS-pdG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xJs-zs-f8X" id="BBY-WB-RjT"/>
+                                    <outlet property="delegate" destination="xJs-zs-f8X" id="Dib-KD-veZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hST-xU-yOX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hR1-WV-d24" firstAttribute="leading" secondItem="hST-xU-yOX" secondAttribute="leading" id="0wV-AM-0wh"/>
+                            <constraint firstItem="hST-xU-yOX" firstAttribute="trailing" secondItem="hR1-WV-d24" secondAttribute="trailing" id="3Qw-gb-PWI"/>
+                            <constraint firstItem="hR1-WV-d24" firstAttribute="top" secondItem="Erh-OA-UHx" secondAttribute="bottom" id="5Y9-bx-2s5"/>
+                            <constraint firstItem="Erh-OA-UHx" firstAttribute="top" secondItem="hST-xU-yOX" secondAttribute="top" id="H7l-92-o9P"/>
+                            <constraint firstItem="Erh-OA-UHx" firstAttribute="trailing" secondItem="hST-xU-yOX" secondAttribute="trailing" id="QwS-kU-Zmy"/>
+                            <constraint firstItem="Erh-OA-UHx" firstAttribute="leading" secondItem="hST-xU-yOX" secondAttribute="leading" id="rG5-1n-s2d"/>
+                            <constraint firstItem="hST-xU-yOX" firstAttribute="bottom" secondItem="hR1-WV-d24" secondAttribute="bottom" id="sjQ-ec-l4O"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Boardgames" id="S1R-Vt-5qc"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Erh-OA-UHx" id="dkt-WL-1Uw"/>
+                        <outlet property="tableView" destination="hR1-WV-d24" id="nJt-FK-j6Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbJ-Ky-DDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
