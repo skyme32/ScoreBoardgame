@@ -48,7 +48,7 @@ struct Gameboard: Codable {
     //    "original": "string"
     //  },
     let descriptionPreview: String?
-    typealias GameboardData = (title: String, value: String)
+    typealias GameboardData = (title: String, value: String, image: String)
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -69,11 +69,11 @@ struct Gameboard: Codable {
 extension Gameboard {
   var tableRepresentation: [GameboardData] {
     return [
-      ("Name", name),
-      ("Year", "\(yearPublished ?? 1900)"),
-      ("Rating", "\(averageRating ?? 0.0)"),
-      ("Players", "\(players ?? "")"),
-      ("Play time", "\(playtime ?? "")")
+      ("Name", name, "dice.fill"),
+      ("Year", "\(yearPublished ?? 1900)", "calendar"),
+      ("Rating", "\(String(format:"%.1f", averageRating ?? 0.0))/5", "star.fill"),
+      ("Players", "\(players ?? "")", "person.fill"),
+      ("Play time", "\(playtime ?? "")", "clock.fill")
     ]
   }
 }
