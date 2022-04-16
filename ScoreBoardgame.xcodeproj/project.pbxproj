@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4891A65D28095B4300127C18 /* Gameboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891A65C28095B4300127C18 /* Gameboard.swift */; };
 		4891A65F28096EF000127C18 /* GameboardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4891A65E28096EF000127C18 /* GameboardResponse.swift */; };
+		489E3BFA280A1F85000992E0 /* InfoBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489E3BF9280A1F85000992E0 /* InfoBoardViewController.swift */; };
 		48C39C6E27FA205D00099544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C6D27FA205D00099544 /* AppDelegate.swift */; };
 		48C39C7027FA205D00099544 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C6F27FA205D00099544 /* SceneDelegate.swift */; };
 		48C39C7527FA205D00099544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7327FA205D00099544 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		4891A65C28095B4300127C18 /* Gameboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gameboard.swift; sourceTree = "<group>"; };
 		4891A65E28096EF000127C18 /* GameboardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameboardResponse.swift; sourceTree = "<group>"; };
+		489E3BF9280A1F85000992E0 /* InfoBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBoardViewController.swift; sourceTree = "<group>"; };
 		48C39C6A27FA205D00099544 /* ScoreBoardgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreBoardgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C39C6D27FA205D00099544 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C39C6F27FA205D00099544 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				48FC89D727FA488C00D66A36 /* ScoreViewController.swift */,
 				48FC89DA27FA48A500D66A36 /* SearchViewController.swift */,
 				48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */,
+				489E3BF9280A1F85000992E0 /* InfoBoardViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				48FC89DB27FA48A500D66A36 /* SearchViewController.swift in Sources */,
 				48FC89E127FA496D00D66A36 /* AtlasClient.swift in Sources */,
 				48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */,
+				489E3BFA280A1F85000992E0 /* InfoBoardViewController.swift in Sources */,
 				48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */,
 				48FC89D827FA488C00D66A36 /* ScoreViewController.swift in Sources */,
 				48FC89DF27FA492400D66A36 /* MethodAPI.swift in Sources */,

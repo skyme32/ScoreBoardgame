@@ -35,7 +35,7 @@ struct Gameboard: Codable {
     let name: String
     let yearPublished: Int?
     let minAge: Int?
-    let image_url: String?
+    let imageUrl: String?
     let rulesUrl: String?
     let averageRating: Double?
     let players: String?
@@ -48,6 +48,7 @@ struct Gameboard: Codable {
     //    "original": "string"
     //  },
     let descriptionPreview: String?
+    typealias GameboardData = (title: String, value: String)
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -55,7 +56,7 @@ struct Gameboard: Codable {
         case name
         case yearPublished = "year_published"
         case minAge = "min_age"
-        case image_url = "image_url"
+        case imageUrl = "image_url"
         case rulesUrl = "rules_url"
         case averageRating = "average_user_rating"
         case players
@@ -63,4 +64,16 @@ struct Gameboard: Codable {
         case descriptionPreview = "description_preview"
     }
     
+}
+
+extension Gameboard {
+  var tableRepresentation: [GameboardData] {
+    return [
+      ("Name", name),
+      ("Year", "\(yearPublished ?? 1900)"),
+      ("Rating", "\(averageRating ?? 0.0)"),
+      ("Players", "\(players ?? "")"),
+      ("Play time", "\(playtime ?? "")")
+    ]
+  }
 }

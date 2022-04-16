@@ -20,7 +20,12 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "infoBoardgame" {
+            let detailVC = segue.destination as! InfoBoardViewController
+            detailVC.gameboard = gameboards[selectedIndex]
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -72,11 +77,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
         selectedIndex = indexPath.row
-        performSegue(withIdentifier: "showDetail", sender: nil)
+        performSegue(withIdentifier: "infoBoardgame", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-         */
     }
     
 }

@@ -21,11 +21,14 @@ class AtlasClient {
         static let apiKeyParam = "?client_id=\(AtlasClient.Auth.key)"
         
         case searchBoardgamr(query: String)
+        case posterImage(posterPath: String)
         
         var stringValue: String {
             switch self {
             case .searchBoardgamr(let query):
                 return Endpoints.base + Endpoints.apiKeyParam + "&order_by=popularity" + "&name=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+            case .posterImage(let posterPath):
+                return posterPath
             }
         }
         
@@ -49,14 +52,12 @@ class AtlasClient {
         }
     }
     
-    /*
-    class func downloadPosterImage(url: String, completion: @escaping (Data?, Error?) -> Void) {
-        let task = URLSession.shared.dataTask(with: Endpoints.getUrl(url).url) { data, response, error in
+    class func downloadPosterImage(path: String, completion: @escaping (Data?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: Endpoints.posterImage(posterPath: path).url) { data, response, error in
             DispatchQueue.main.async {
                 completion(data, error)
             }
         }
         task.resume()
     }
-     */
 }
