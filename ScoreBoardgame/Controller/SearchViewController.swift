@@ -23,7 +23,8 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "infoBoardgame" {
             let detailVC = segue.destination as! InfoBoardViewController
-            detailVC.gameboard = gameboards[selectedIndex]
+            //let boardgame = DetailBoardgame(gameboard: gameboards[selectedIndex])
+            detailVC.gameboard = DetailBoardgame(gameboard: gameboards[selectedIndex])
         }
     }
 }

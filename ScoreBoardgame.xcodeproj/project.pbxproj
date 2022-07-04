@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483204DF280C7589002A143E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483204DE280C7589002A143E /* DataController.swift */; };
 		4877556F280AB5BE00813207 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4877556E280AB5BE00813207 /* Colors.xcassets */; };
 		48775571280ABDA400813207 /* InfoDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48775570280ABDA400813207 /* InfoDetailViewCell.swift */; };
 		48775573280B3D6E00813207 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48775572280B3D6E00813207 /* Colors.swift */; };
@@ -19,6 +20,9 @@
 		48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C39C7627FA205D00099544 /* ScoreBoardgame.xcdatamodeld */; };
 		48C39C7A27FA205E00099544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7927FA205E00099544 /* Assets.xcassets */; };
 		48C39C7D27FA205E00099544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C39C7B27FA205E00099544 /* LaunchScreen.storyboard */; };
+		48DEFC612870580200AF3A7C /* DetailBoardgame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DEFC602870580200AF3A7C /* DetailBoardgame.swift */; };
+		48DEFC632870A56C00AF3A7C /* EditScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DEFC622870A56C00AF3A7C /* EditScoreViewController.swift */; };
+		48DEFC652870E29400AF3A7C /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DEFC642870E29400AF3A7C /* AddPlayerViewController.swift */; };
 		48FC89D827FA488C00D66A36 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89D727FA488C00D66A36 /* ScoreViewController.swift */; };
 		48FC89DB27FA48A500D66A36 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89DA27FA48A500D66A36 /* SearchViewController.swift */; };
 		48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */; };
@@ -27,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		483204DE280C7589002A143E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		4877556E280AB5BE00813207 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		48775570280ABDA400813207 /* InfoDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewCell.swift; sourceTree = "<group>"; };
 		48775572280B3D6E00813207 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -41,6 +46,9 @@
 		48C39C7927FA205E00099544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C39C7C27FA205E00099544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C39C7E27FA205E00099544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48DEFC602870580200AF3A7C /* DetailBoardgame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBoardgame.swift; sourceTree = "<group>"; };
+		48DEFC622870A56C00AF3A7C /* EditScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScoreViewController.swift; sourceTree = "<group>"; };
+		48DEFC642870E29400AF3A7C /* AddPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
 		48FC89D727FA488C00D66A36 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		48FC89DA27FA48A500D66A36 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		483204DD280C756A002A143E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				483204DE280C7589002A143E /* DataController.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		48C39C6127FA205D00099544 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				48C39C7627FA205D00099544 /* ScoreBoardgame.xcdatamodeld */,
+				483204DD280C756A002A143E /* Data */,
 				48C39C9427FA26DE00099544 /* Response */,
 				48C39C9327FA26D300099544 /* Client */,
+				48DEFC5D287032F400AF3A7C /* Bean */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,6 +125,8 @@
 				48FC89DA27FA48A500D66A36 /* SearchViewController.swift */,
 				48FC89DC27FA48BB00D66A36 /* FavoriteViewController.swift */,
 				489E3BF9280A1F85000992E0 /* InfoBoardViewController.swift */,
+				48DEFC622870A56C00AF3A7C /* EditScoreViewController.swift */,
+				48DEFC642870E29400AF3A7C /* AddPlayerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +174,14 @@
 				4891A65E28096EF000127C18 /* GameboardResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		48DEFC5D287032F400AF3A7C /* Bean */ = {
+			isa = PBXGroup;
+			children = (
+				48DEFC602870580200AF3A7C /* DetailBoardgame.swift */,
+			);
+			path = Bean;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,12 +260,16 @@
 				48FC89E127FA496D00D66A36 /* AtlasClient.swift in Sources */,
 				48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */,
 				489E3BFA280A1F85000992E0 /* InfoBoardViewController.swift in Sources */,
+				48DEFC612870580200AF3A7C /* DetailBoardgame.swift in Sources */,
 				48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */,
 				48FC89D827FA488C00D66A36 /* ScoreViewController.swift in Sources */,
 				48FC89DF27FA492400D66A36 /* MethodAPI.swift in Sources */,
+				483204DF280C7589002A143E /* DataController.swift in Sources */,
+				48DEFC632870A56C00AF3A7C /* EditScoreViewController.swift in Sources */,
 				48C39C6E27FA205D00099544 /* AppDelegate.swift in Sources */,
 				48775573280B3D6E00813207 /* Colors.swift in Sources */,
 				4891A65F28096EF000127C18 /* GameboardResponse.swift in Sources */,
+				48DEFC652870E29400AF3A7C /* AddPlayerViewController.swift in Sources */,
 				48775571280ABDA400813207 /* InfoDetailViewCell.swift in Sources */,
 				48C39C7027FA205D00099544 /* SceneDelegate.swift in Sources */,
 				4891A65D28095B4300127C18 /* Gameboard.swift in Sources */,

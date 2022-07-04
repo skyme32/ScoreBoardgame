@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ScoreViewController: UIViewController {
+    
+    var dataController:DataController!
+    var fetchedController:NSFetchedResultsController<Boardgame>!
 
     override func viewDidLoad() {
         super.viewDidLoad()

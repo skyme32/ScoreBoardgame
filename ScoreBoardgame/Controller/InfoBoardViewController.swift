@@ -7,6 +7,7 @@
 
 import PDFKit
 import UIKit
+import CoreData
 
 class InfoBoardViewController: UIViewController {
     
@@ -17,37 +18,35 @@ class InfoBoardViewController: UIViewController {
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var rulesButton: UIBarButtonItem!
     
-    var gameboard: Gameboard!
+    var gameboard: DetailBoardgame!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = gameboard.name
         self.indicatorStatus(status: true)
         self.downloadPosterImage()
-        self.descriptionHidden(textDesc: gameboard.descriptionPreview!)
-        toggleBarButton(favoriteButton, enabled: false)
+        self.descriptionHidden(textDesc: gameboard.descriptionPreview)
         
-        if gameboard.rulesUrl == nil {
+        if gameboard.rulesUrl.isEmpty {
             rulesButton.isEnabled = false
         } else {
             rulesButton.isEnabled = true
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
     // MARK: Actions
     
     @IBAction func goToRules(_ sender: Any) {
-        if gameboard.rulesUrl != nil {
-            UIApplication.shared.open(URL(string: gameboard.rulesUrl!)!)
+        if !gameboard.rulesUrl.isEmpty {
+            UIApplication.shared.open(URL(string: gameboard.rulesUrl)!)
         }
-    }
-    
-    @IBAction func ishaveToFavorite(_ sender: Any) {
-        toggleBarButton(favoriteButton, enabled: true)
     }
     
     // MARK: UI Methods
@@ -67,8 +66,9 @@ class InfoBoardViewController: UIViewController {
     }
     
     private func downloadPosterImage() {
-        if let posterPath = gameboard.imageUrl {
-            AtlasClient.downloadPosterImage(path: posterPath) { data, error in
+        
+        if !gameboard.imageUrl.isEmpty {
+            AtlasClient.downloadPosterImage(path: gameboard.imageUrl) { data, error in
                 guard let data = data else {
                     return
                 }

@@ -27,6 +27,13 @@
 
 import Foundation
 
+struct Images: Codable {
+    let thumb: String
+    let small: String
+    let medium: String
+    let large: String
+    let original: String
+}
 
 struct Gameboard: Codable {
     
@@ -40,15 +47,8 @@ struct Gameboard: Codable {
     let averageRating: Double?
     let players: String?
     let playtime: String?
-    //  "images": {
-    //    "thumb": "40x40/string",
-    //    "small": "150x150/string",
-    //    "medium": "350x350/string",
-    //    "large": "700x700/string",
-    //    "original": "string"
-    //  },
+    let images: Images?
     let descriptionPreview: String?
-    typealias GameboardData = (title: String, value: String, image: String)
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -61,19 +61,7 @@ struct Gameboard: Codable {
         case averageRating = "average_user_rating"
         case players
         case playtime
+        case images
         case descriptionPreview = "description_preview"
     }
-    
-}
-
-extension Gameboard {
-  var tableRepresentation: [GameboardData] {
-    return [
-      ("Name", name, "dice.fill"),
-      ("Year", "\(yearPublished ?? 1900)", "calendar"),
-      ("Rating", "\(String(format:"%.1f", averageRating ?? 0.0))/5", "star.fill"),
-      ("Players", "\(players ?? "")", "person.fill"),
-      ("Play time", "\(playtime ?? "")", "clock.fill")
-    ]
-  }
 }
