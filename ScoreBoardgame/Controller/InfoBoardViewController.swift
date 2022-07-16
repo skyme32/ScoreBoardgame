@@ -27,9 +27,14 @@ class InfoBoardViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = gameboard.name
-        self.indicatorStatus(status: true)
-        self.downloadPosterImage()
         self.descriptionHidden(textDesc: gameboard.descriptionPreview)
+        
+        if (gameboard.imageGame == nil) {
+            self.indicatorStatus(status: true)
+            self.downloadPosterImage()
+        } else {
+            self.imageView.image = UIImage(data: gameboard.imageGame)
+        }
         
         if gameboard.rulesUrl.isEmpty {
             rulesButton.isEnabled = false
