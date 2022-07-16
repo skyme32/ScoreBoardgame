@@ -20,14 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         dataController.load()
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let scoreViewController = storyboard.instantiateViewController(withIdentifier: "ScoreBoardgames") as! ScoreViewController
-        scoreViewController.dataController = dataController
+        let editViewController = storyboard.instantiateViewController(withIdentifier: "EditScore") as! EditScoreViewController
+        
+        editViewController.dataPepe = dataController
     }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-    }
-
-
 }
-
