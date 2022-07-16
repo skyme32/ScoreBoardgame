@@ -47,6 +47,7 @@ class EditScoreViewController: UIViewController {
     
     @IBAction func buttonSaveSacore(_ sender: Any) {
         saveBoardGame()
+        saveGameScore()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialTab")
@@ -133,6 +134,26 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         return scoreNew
     }
     
+    func saveGameScore() {
+        let game = Game(context: dataController)
+        game.title = gameboard.name
+        game.creation_date = pickerDate.date
+        game.photo = gameboard.imageGame
+        game.time = editTextTime.text
+        game.geolocation = editTextLocation.text
+        game.comment = editTextComment.text
+        
+        for score in scoreList {
+            let scoreNew = Score(context: dataController)
+            scoreNew.player = score.player
+            scoreNew.score = score.score
+            
+            game.addToScores(scoreNew)
+        }
+        
+        try? dataController.save()
+    }
+    
     func saveBoardGame() {
         
         if fetchedResultsController.fetchedObjects!.count < 1 {
@@ -149,6 +170,7 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
             boardgame.rules_url = gameboard.rulesUrl
             boardgame.url = gameboard.url
             boardgame.photo = gameboard.imageGame
+            boardgame.createDate = Date()
             
             try? dataController.save()
         }

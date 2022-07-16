@@ -116,10 +116,10 @@ extension FavoriteViewController: NSFetchedResultsControllerDelegate {
     
     func setupFetchedResultsController() {
         let fetchRequest:NSFetchRequest<Boardgame> = Boardgame.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "createDate", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController, sectionNameKeyPath: nil, cacheName: "notebooks")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController, sectionNameKeyPath: nil, cacheName: "boardGames")
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()

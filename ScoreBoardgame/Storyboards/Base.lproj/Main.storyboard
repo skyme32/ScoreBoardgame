@@ -645,14 +645,82 @@
                     <view key="view" contentMode="scaleToFill" id="BGk-zR-vbz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UkJ-yI-gfr">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameViewCell" rowHeight="80" id="Dwa-6j-dyP" customClass="GameViewCell" customModule="ScoreBoardgame" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dwa-6j-dyP" id="d3h-dA-9ab">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iBe-gq-eD1">
+                                                    <rect key="frame" x="16" y="9" width="64" height="61.5"/>
+                                                    <color key="tintColor" name="AccentColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="64" id="Jsh-SK-IgS"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="PoT-kI-5B3"/>
+                                                        <constraint firstAttribute="width" constant="64" id="rai-6k-sNT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catan: Knight and comerciant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBa-Ot-uzk">
+                                                    <rect key="frame" x="96" y="16" width="310" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catan: Knight and comerciant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6d-tN-hbj">
+                                                    <rect key="frame" x="96" y="44.5" width="310" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iBa-Ot-uzk" firstAttribute="top" secondItem="d3h-dA-9ab" secondAttribute="top" constant="16" id="51c-kY-ulh"/>
+                                                <constraint firstAttribute="bottom" secondItem="I6d-tN-hbj" secondAttribute="bottom" constant="16" id="67Q-6H-5Ey"/>
+                                                <constraint firstAttribute="bottom" secondItem="iBe-gq-eD1" secondAttribute="bottom" constant="8" id="7Qc-q2-ygr"/>
+                                                <constraint firstItem="iBa-Ot-uzk" firstAttribute="leading" secondItem="iBe-gq-eD1" secondAttribute="trailing" constant="16" id="CDV-fJ-MKm"/>
+                                                <constraint firstAttribute="trailing" secondItem="iBa-Ot-uzk" secondAttribute="trailing" constant="8" id="Nhl-VU-DHH"/>
+                                                <constraint firstItem="I6d-tN-hbj" firstAttribute="leading" secondItem="iBe-gq-eD1" secondAttribute="trailing" constant="16" id="brh-UO-4cS"/>
+                                                <constraint firstAttribute="trailing" secondItem="I6d-tN-hbj" secondAttribute="trailing" constant="8" id="nGL-SF-r2R"/>
+                                                <constraint firstItem="iBe-gq-eD1" firstAttribute="top" secondItem="d3h-dA-9ab" secondAttribute="top" constant="8" id="rNT-UG-yrB"/>
+                                                <constraint firstItem="iBe-gq-eD1" firstAttribute="leading" secondItem="d3h-dA-9ab" secondAttribute="leading" constant="16" id="wGo-0M-otv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="date" destination="I6d-tN-hbj" id="ogY-WW-YqL"/>
+                                            <outlet property="imageGame" destination="iBe-gq-eD1" id="HIb-ll-woV"/>
+                                            <outlet property="title" destination="iBa-Ot-uzk" id="8mI-HA-YXC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HDc-6B-2Q8" id="0GV-pj-aEq"/>
+                                    <outlet property="delegate" destination="HDc-6B-2Q8" id="McH-XR-5ZF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3Jt-2F-Pse"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UkJ-yI-gfr" firstAttribute="leading" secondItem="3Jt-2F-Pse" secondAttribute="leading" id="JEV-tj-FdI"/>
+                            <constraint firstItem="3Jt-2F-Pse" firstAttribute="bottom" secondItem="UkJ-yI-gfr" secondAttribute="bottom" id="adX-o7-eXb"/>
+                            <constraint firstItem="3Jt-2F-Pse" firstAttribute="trailing" secondItem="UkJ-yI-gfr" secondAttribute="trailing" id="pa1-cT-YkM"/>
+                            <constraint firstItem="UkJ-yI-gfr" firstAttribute="top" secondItem="3Jt-2F-Pse" secondAttribute="top" id="stN-gw-N2x"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Score Boardgames" id="hjN-L9-fkR"/>
+                    <connections>
+                        <outlet property="tableView" destination="UkJ-yI-gfr" id="RO2-IQ-pIv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tg-jK-07v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1819" y="958"/>
+            <point key="canvasLocation" x="1818.840579710145" y="957.58928571428567"/>
         </scene>
         <!--Favorite-->
         <scene sceneID="ODR-GH-ZKA">
