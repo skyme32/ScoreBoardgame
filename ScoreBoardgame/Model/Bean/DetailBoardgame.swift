@@ -20,6 +20,7 @@ struct DetailBoardgame {
     var players = ""
     var playtime = ""
     var descriptionPreview = ""
+    var imageGame: Data!
     typealias GameboardData = (title: String, value: String?, image: String)
     
     var tableRepresentation: [GameboardData] {
@@ -58,4 +59,5 @@ struct DetailBoardgame {
         self.rulesUrl = boardgame.rules_url!
         self.url = boardgame.url!
     }
+
 }

@@ -45,6 +45,7 @@ class InfoBoardViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "linkEditBoardgame" {
             let detailVC = segue.destination as! EditScoreViewController
+            detailVC.gameboard = gameboard
             detailVC.dataController = dataController
         }
     }
@@ -80,9 +81,9 @@ class InfoBoardViewController: UIViewController {
                 guard let data = data else {
                     return
                 }
-                let image = UIImage(data: data)
-                self.imageView.image = image
+                self.imageView.image = UIImage(data: data)
                 self.indicatorStatus(status: false)
+                self.gameboard.imageGame = data
             }
         }
     }

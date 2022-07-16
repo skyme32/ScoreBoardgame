@@ -648,7 +648,9 @@
                         <viewLayoutGuide key="safeArea" id="3Jt-2F-Pse"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Score Boardgames" id="hjN-L9-fkR"/>
+                    <navigationItem key="navigationItem" title="Score Boardgames" id="hjN-L9-fkR">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="vHN-Tk-miQ"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tg-jK-07v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -674,20 +676,85 @@
         <!--Favorite Boardgames-->
         <scene sceneID="Gt5-hB-6Qt">
             <objects>
-                <viewController title="Favorite Boardgames" id="Vh3-Di-kbE" sceneMemberID="viewController">
+                <viewController title="Favorite Boardgames" id="Vh3-Di-kbE" customClass="FavoriteViewController" customModule="ScoreBoardgame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jD5-Di-9g2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-XC-AN4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteViewCell" rowHeight="80" id="NzU-hI-qr0" customClass="FavoriteViewCell" customModule="ScoreBoardgame" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NzU-hI-qr0" id="KQ0-x1-DMa">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="L8S-ZF-WTy">
+                                                    <rect key="frame" x="16" y="9" width="64" height="61.5"/>
+                                                    <color key="tintColor" name="AccentColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="ACK-Rn-Pgg"/>
+                                                        <constraint firstAttribute="height" constant="64" id="NHQ-i0-SXe"/>
+                                                        <constraint firstAttribute="width" constant="64" id="Y5b-jT-UGY"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catan: Knight and comerciant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G56-Hm-vCr">
+                                                    <rect key="frame" x="88" y="11" width="322" height="58"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G56-Hm-vCr" firstAttribute="top" secondItem="KQ0-x1-DMa" secondAttribute="topMargin" id="3KE-gS-XXW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="G56-Hm-vCr" secondAttribute="bottom" id="Bze-KH-naZ"/>
+                                                <constraint firstItem="L8S-ZF-WTy" firstAttribute="top" secondItem="KQ0-x1-DMa" secondAttribute="top" constant="8" id="D6g-2m-Wg4"/>
+                                                <constraint firstItem="G56-Hm-vCr" firstAttribute="trailing" secondItem="KQ0-x1-DMa" secondAttribute="trailingMargin" constant="16" id="KCQ-Zq-zdl"/>
+                                                <constraint firstItem="G56-Hm-vCr" firstAttribute="leading" secondItem="L8S-ZF-WTy" secondAttribute="trailing" constant="8" id="LCv-Ws-rNG"/>
+                                                <constraint firstItem="L8S-ZF-WTy" firstAttribute="leading" secondItem="KQ0-x1-DMa" secondAttribute="leading" constant="16" id="ang-fE-jmu"/>
+                                                <constraint firstAttribute="bottom" secondItem="L8S-ZF-WTy" secondAttribute="bottom" constant="8" id="rrk-Tx-qft"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageGame" destination="L8S-ZF-WTy" id="f0x-33-lxI"/>
+                                            <outlet property="title" destination="G56-Hm-vCr" id="7KJ-05-7uJ"/>
+                                            <segue destination="xEC-Ox-1q3" kind="show" id="yg6-G0-etd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vh3-Di-kbE" id="BV2-aP-kTs"/>
+                                    <outlet property="delegate" destination="Vh3-Di-kbE" id="E7M-Be-8y1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="0Yw-XD-u4Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Yw-XD-u4Q" firstAttribute="trailing" secondItem="cYW-XC-AN4" secondAttribute="trailing" id="GJU-1C-Vvq"/>
+                            <constraint firstItem="cYW-XC-AN4" firstAttribute="leading" secondItem="0Yw-XD-u4Q" secondAttribute="leading" id="Umf-9b-beX"/>
+                            <constraint firstItem="cYW-XC-AN4" firstAttribute="top" secondItem="0Yw-XD-u4Q" secondAttribute="top" id="ZYe-CU-WIR"/>
+                            <constraint firstItem="0Yw-XD-u4Q" firstAttribute="bottom" secondItem="cYW-XC-AN4" secondAttribute="bottom" id="av2-mu-NH6"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorite Boardgames" id="FCg-oT-T5x"/>
+                    <navigationItem key="navigationItem" title="Favorite Boardgames" id="FCg-oT-T5x">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="CTg-lM-ZjF"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="cYW-XC-AN4" id="9xH-Xc-1Jm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ipd-Kv-xRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1819" y="279"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yg6-G0-etd"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
@@ -697,6 +764,7 @@
         <image name="location" catalog="system" width="128" height="118"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sta" width="128" height="128"/>

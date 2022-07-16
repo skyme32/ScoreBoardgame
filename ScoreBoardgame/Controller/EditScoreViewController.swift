@@ -19,6 +19,7 @@ class EditScoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var dataController:DataController!
+    var gameboard: DetailBoardgame!
     var scoreList: [Score] = []
 
     
@@ -32,6 +33,21 @@ class EditScoreViewController: UIViewController {
     // MARK: Action buttons
     
     @IBAction func buttonSaveSacore(_ sender: Any) {
+
+        let boardgame = Boardgame(context: dataController.viewContext)
+        
+        boardgame.name = gameboard.name
+        boardgame.average_rating = gameboard.averageRating
+        boardgame.description_preview = gameboard.descriptionPreview
+        boardgame.image_url = gameboard.imageUrl
+        boardgame.players = gameboard.players
+        boardgame.playtime = gameboard.playtime
+        boardgame.year_published = Int16(gameboard.yearPublished)
+        boardgame.rules_url = gameboard.rulesUrl
+        boardgame.url = gameboard.url
+        boardgame.photo = gameboard.imageGame
+        
+        try? dataController.viewContext.save()
     }
     
     @IBAction func buttonAddPlayer(_ sender: Any) {

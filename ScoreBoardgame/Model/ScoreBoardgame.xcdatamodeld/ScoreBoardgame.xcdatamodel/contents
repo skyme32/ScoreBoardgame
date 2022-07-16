@@ -7,6 +7,7 @@
         <attribute name="image_url" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="official_url" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" storedInTruthFile="YES"/>
         <attribute name="players" optional="YES" attributeType="String"/>
         <attribute name="playtime" optional="YES" attributeType="String"/>
         <attribute name="publisher" optional="YES" attributeType="String"/>
@@ -20,6 +21,7 @@
         <attribute name="geolocation" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" storedInTruthFile="YES"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="scores" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Score" inverseName="game" inverseEntity="Score"/>
@@ -30,8 +32,8 @@
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="scores" inverseEntity="Game"/>
     </entity>
     <elements>
-        <element name="Boardgame" positionX="-63.31982421875" positionY="-16.202392578125" width="128" height="209"/>
-        <element name="Game" positionX="154.308837890625" positionY="-15.65155029296875" width="128" height="149"/>
+        <element name="Boardgame" positionX="-63.31982421875" positionY="-16.202392578125" width="128" height="224"/>
+        <element name="Game" positionX="154.308837890625" positionY="-15.65155029296875" width="128" height="164"/>
         <element name="Score" positionX="360.75390625" positionY="-31.083984375" width="128" height="74"/>
     </elements>
 </model>
