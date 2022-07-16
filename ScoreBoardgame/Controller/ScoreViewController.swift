@@ -10,7 +10,7 @@ import CoreData
 
 class ScoreViewController: UIViewController {
     
-    var dataController:DataController!
+    var dataController: DataController!
     var fetchedResultsController:NSFetchedResultsController<Boardgame>!
 
     override func viewDidLoad() {

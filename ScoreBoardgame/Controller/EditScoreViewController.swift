@@ -16,8 +16,9 @@ class EditScoreViewController: UIViewController {
     @IBOutlet weak var editTextTime: UITextField!
     @IBOutlet weak var editTextLocation: UITextField!
     @IBOutlet weak var editTextComment: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
-    var dataPepe:DataController!
+    var dataController:DataController!
     var scoreList: [Score] = []
 
     
@@ -45,7 +46,10 @@ class EditScoreViewController: UIViewController {
     // MARK: Private functions
     
     private func addRefreshNewPlayer(name: String, score: String) {
-        scoreList.append(addScore(playerName: name, score: Int32(score)!))
+        if !name.isEmpty && !score.isEmpty {
+            scoreList.append(addScore(playerName: name, score: Int32(score)!))
+            tableView.reloadData()
+        }
     }
 }
 
@@ -79,10 +83,9 @@ extension EditScoreViewController: UITableViewDataSource, UITableViewDelegate {
 extension EditScoreViewController: NSFetchedResultsControllerDelegate {
     
     func addScore(playerName: String, score: Int32) -> Score {
-        let scoreNew = Score(context: dataPepe.viewContext)
+        let scoreNew = Score(context: dataController.viewContext)
         scoreNew.player = playerName
         scoreNew.score = score
-        //try? dataController.viewContext.save()
         
         return scoreNew
     }

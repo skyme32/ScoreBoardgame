@@ -8,6 +8,8 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
+    
+    var dataController: DataController!
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -485,6 +485,7 @@
                         <outlet property="editTextLocation" destination="hA5-IF-xO2" id="lfe-uW-ZFd"/>
                         <outlet property="editTextTime" destination="nXB-xV-7w7" id="jyW-9G-NnZ"/>
                         <outlet property="pickerDate" destination="0i7-QP-UWM" id="kd6-JM-cX7"/>
+                        <outlet property="tableView" destination="WfX-Ly-Hqe" id="KTW-eW-QYe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGJ-50-6nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

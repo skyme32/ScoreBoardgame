@@ -21,6 +21,7 @@ class InfoBoardViewController: UIViewController {
     @IBOutlet weak var rulesButton: UIBarButtonItem!
     
     var gameboard: DetailBoardgame!
+    var dataController: DataController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,13 @@ class InfoBoardViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "linkEditBoardgame" {
+            let detailVC = segue.destination as! EditScoreViewController
+            detailVC.dataController = dataController
+        }
     }
     
     // MARK: Actions

@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    //var window: UIWindow?
+    var window: UIWindow?
     
     let dataController = DataController(modelName: "ScoreBoardgame")
 
@@ -19,11 +19,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         dataController.load()
         
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let editViewController = storyboard.instantiateViewController(withIdentifier: "EditScore") as! EditScoreViewController
-        let scoreViewController = storyboard.instantiateViewController(withIdentifier: "ScoreList") as! ScoreViewController
-        
-        editViewController.dataPepe = dataController
-        scoreViewController.dataController = dataController
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+                    
+            let tabArray = tabBarController.viewControllers!
+            
+            for tab in tabArray {
+                
+                let controller = tab as! UINavigationController
+                let uiController = controller.topViewController
+                
+                switch uiController {
+                case let uiController as ScoreViewController:
+                    uiController.dataController = dataController
+                case let uiController as SearchViewController:
+                    uiController.dataController = dataController
+                case let uiController as FavoriteViewController:
+                    uiController.dataController = dataController
+                default:
+                    break
+                }
+            }
+        }
     }
+    
 }
