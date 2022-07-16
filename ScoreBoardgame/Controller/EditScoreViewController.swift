@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class EditScoreViewController: UIViewController {
     
@@ -19,9 +20,12 @@ class EditScoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var dataController = DataController.shared.viewContext
-    var fetchedResultsController:NSFetchedResultsController<Boardgame>!
+    var fetchedResultsBoardgame:NSFetchedResultsController<Boardgame>!
+    var fetchedResultsGame:NSFetchedResultsController<Game>!
     var gameboard: DetailBoardgame!
     var scoreList: [Score] = []
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D();
+    lazy var geocoder = CLGeocoder()
 
     
     // MARK: Lifecycle
@@ -39,15 +43,17 @@ class EditScoreViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        fetchedResultsController = nil
+        fetchedResultsBoardgame = nil
+        fetchedResultsGame = nil
     }
         
     
     // MARK: Action buttons
     
     @IBAction func buttonSaveSacore(_ sender: Any) {
+        geocode(address: editTextLocation.text!)
+        
         saveBoardGame()
-        saveGameScore()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialTab")
@@ -112,21 +118,21 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         let predicate = NSPredicate(format: "id == %@", gameboard.id)
         fetchRequest.predicate = predicate
         
-        fetchedResultsController = NSFetchedResultsController(
+        fetchedResultsBoardgame = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: DataController.shared.viewContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-        fetchedResultsController.delegate = self
+        fetchedResultsBoardgame.delegate = self
         do {
-            try fetchedResultsController.performFetch()
+            try fetchedResultsBoardgame.performFetch()
         } catch {
             fatalError("The fetch could not be performed: \(error.localizedDescription)")
         }
     }
     
-    func addScore(playerName: String, score: Int32) -> Score {
+    private func addScore(playerName: String, score: Int32) -> Score {
         let scoreNew = Score(context: dataController)
         scoreNew.player = playerName
         scoreNew.score = score
@@ -134,7 +140,7 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         return scoreNew
     }
     
-    func saveGameScore() {
+    private func saveGameScore() {
         let game = Game(context: dataController)
         game.title = gameboard.name
         game.creation_date = pickerDate.date
@@ -142,6 +148,8 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         game.time = editTextTime.text
         game.geolocation = editTextLocation.text
         game.comment = editTextComment.text
+        game.longitude = coordinate.longitude
+        game.latitude = coordinate.latitude
         
         for score in scoreList {
             let scoreNew = Score(context: dataController)
@@ -151,12 +159,14 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
             game.addToScores(scoreNew)
         }
         
+        print(coordinate)
+        
         try? dataController.save()
     }
     
-    func saveBoardGame() {
+    private func saveBoardGame() {
         
-        if fetchedResultsController.fetchedObjects!.count < 1 {
+        if fetchedResultsBoardgame.fetchedObjects!.count < 1 {
             let boardgame = Boardgame(context: dataController)
             
             boardgame.id = gameboard.id
@@ -176,4 +186,34 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
+}
+
+
+// MARK: Forward Geocode
+
+extension EditScoreViewController {
+    
+    func geocode(address: String) {
+        
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            self.processResponse(withPlacemarks: placemarks, error: error)
+        }
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+
+        if error == nil {
+            var location: CLLocation?
+
+            if let placemarks = placemarks, placemarks.count > 0 {
+                location = placemarks.first?.location
+            }
+
+            if let location = location {
+                coordinate = location.coordinate
+            }
+        }
+        
+        saveGameScore()
+    }
 }

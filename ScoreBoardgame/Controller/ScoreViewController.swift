@@ -14,6 +14,13 @@ class ScoreViewController: UIViewController {
     
     var dataController = DataController.shared.viewContext
     var fetchedResultsController:NSFetchedResultsController<Game>!
+    
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .long
+        return df
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +50,15 @@ class ScoreViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let vc = segue.destination as? InfoGameViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                vc.game = fetchedResultsController.object(at: indexPath)
+            }
+        }
     }
     
     
@@ -78,7 +94,10 @@ extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameViewCell", for: indexPath) as! GameViewCell
         cell.title.text = game.title
-        cell.date.text = game.creation_date?.formatted()
+        
+        if let creationDate = game.creation_date {
+            cell.date.text = dateFormatter.string(from: creationDate)
+        }
         
         if (game.photo != nil) {
             cell.imageGame.image = UIImage(data: game.photo!)
@@ -87,6 +106,7 @@ extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gameToPrint = fetchedResultsController.object(at: indexPath)
         
@@ -96,6 +116,7 @@ extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
             print("\(animal.score) - \(animal.player!)")
         }
     }
+     */
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {

@@ -12,6 +12,7 @@
 		4862276E2882C9E4009B0D4A /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862276D2882C9E4009B0D4A /* ScoreViewController.swift */; };
 		4862277028831071009B0D4A /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4862276F28831071009B0D4A /* FavoriteViewCell.swift */; };
 		48622772288341AE009B0D4A /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48622771288341AE009B0D4A /* GameViewCell.swift */; };
+		48622774288357A4009B0D4A /* InfoGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48622773288357A4009B0D4A /* InfoGameViewController.swift */; };
 		4877556F280AB5BE00813207 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4877556E280AB5BE00813207 /* Colors.xcassets */; };
 		48775571280ABDA400813207 /* InfoDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48775570280ABDA400813207 /* InfoDetailViewCell.swift */; };
 		48775573280B3D6E00813207 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48775572280B3D6E00813207 /* Colors.swift */; };
@@ -39,6 +40,7 @@
 		4862276D2882C9E4009B0D4A /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		4862276F28831071009B0D4A /* FavoriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewCell.swift; sourceTree = "<group>"; };
 		48622771288341AE009B0D4A /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
+		48622773288357A4009B0D4A /* InfoGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGameViewController.swift; sourceTree = "<group>"; };
 		4877556E280AB5BE00813207 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		48775570280ABDA400813207 /* InfoDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewCell.swift; sourceTree = "<group>"; };
 		48775572280B3D6E00813207 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				48DEFC622870A56C00AF3A7C /* EditScoreViewController.swift */,
 				48DEFC642870E29400AF3A7C /* AddPlayerViewController.swift */,
 				4862276D2882C9E4009B0D4A /* ScoreViewController.swift */,
+				48622773288357A4009B0D4A /* InfoGameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				48C39C7827FA205D00099544 /* ScoreBoardgame.xcdatamodeld in Sources */,
 				4862276C2882AC44009B0D4A /* ScoreViewCell.swift in Sources */,
 				489E3BFA280A1F85000992E0 /* InfoBoardViewController.swift in Sources */,
+				48622774288357A4009B0D4A /* InfoGameViewController.swift in Sources */,
 				4862277028831071009B0D4A /* FavoriteViewCell.swift in Sources */,
 				48DEFC612870580200AF3A7C /* DetailBoardgame.swift in Sources */,
 				48FC89DD27FA48BB00D66A36 /* FavoriteViewController.swift in Sources */,
