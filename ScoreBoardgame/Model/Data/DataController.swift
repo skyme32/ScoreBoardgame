@@ -8,16 +8,23 @@
 import Foundation
 import CoreData
 
-
 class DataController {
+    
+    static let shared: DataController = {
+        let instance = DataController()
+        instance.load()
+        return instance
+    }()
+    
+    let modelName = "ScoreBoardgame"
     
     let persistentContainer:NSPersistentContainer
     
     var viewContext:NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-        
-    init(modelName:String) {
+    
+    init() {
         persistentContainer = NSPersistentContainer(name: modelName)
     }
     

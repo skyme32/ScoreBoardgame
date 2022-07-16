@@ -12,7 +12,7 @@
         <!--Score Boardgame-->
         <scene sceneID="iLa-UU-Xbp">
             <objects>
-                <tabBarController id="QEJ-8k-Bm9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="InitialTab" id="QEJ-8k-Bm9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Score Boardgame" id="cn0-5o-wLt"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YIy-ma-5fs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -648,9 +648,7 @@
                         <viewLayoutGuide key="safeArea" id="3Jt-2F-Pse"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Score Boardgames" id="hjN-L9-fkR">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="vHN-Tk-miQ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Score Boardgames" id="hjN-L9-fkR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tg-jK-07v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -740,9 +738,7 @@
                             <constraint firstItem="0Yw-XD-u4Q" firstAttribute="bottom" secondItem="cYW-XC-AN4" secondAttribute="bottom" id="av2-mu-NH6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorite Boardgames" id="FCg-oT-T5x">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="CTg-lM-ZjF"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorite Boardgames" id="FCg-oT-T5x"/>
                     <connections>
                         <outlet property="tableView" destination="cYW-XC-AN4" id="9xH-Xc-1Jm"/>
                     </connections>

@@ -14,7 +14,7 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataController: DataController!
+    var dataController = DataController.shared.viewContext
     var fetchedResultsController:NSFetchedResultsController<Boardgame>!
 
     
@@ -22,10 +22,27 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupFetchedResultsController()
+        
+        tableView.reloadData()
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: false)
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        fetchedResultsController = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,8 +50,28 @@ class FavoriteViewController: UIViewController {
         if let vc = segue.destination as? InfoBoardViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 vc.gameboard = DetailBoardgame(boardgame: fetchedResultsController.object(at: indexPath))
-                vc.dataController = dataController
             }
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Deletes the BoardGames at the specified index path
+    func deleteNotebook(at indexPath: IndexPath) {
+        let boardGameToDelete = fetchedResultsController.object(at: indexPath)
+        dataController.delete(boardGameToDelete)
+        try? dataController.save()
+    }
+    
+    func updateEditButtonState() {
+        if let sections = fetchedResultsController.sections {
+            navigationItem.rightBarButtonItem?.isEnabled = sections[0].numberOfObjects > 0
         }
     }
 }
@@ -63,6 +100,13 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete: deleteNotebook(at: indexPath)
+        default: () // Unsupported
+        }
+    }
 }
 
 
@@ -75,7 +119,7 @@ extension FavoriteViewController: NSFetchedResultsControllerDelegate {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "notebooks")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController, sectionNameKeyPath: nil, cacheName: "notebooks")
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -84,7 +128,7 @@ extension FavoriteViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
             tableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -96,20 +140,23 @@ extension FavoriteViewController: NSFetchedResultsControllerDelegate {
             tableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        @unknown default:
+            break
         }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         let indexSet = IndexSet(integer: sectionIndex)
         switch type {
         case .insert: tableView.insertSections(indexSet, with: .fade)
         case .delete: tableView.deleteSections(indexSet, with: .fade)
         case .update, .move:
             fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
+        @unknown default:
+            break
         }
     }
-
-    
+        
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }

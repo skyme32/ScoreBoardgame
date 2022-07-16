@@ -10,17 +10,11 @@ import CoreData
 
 class ScoreViewController: UIViewController {
     
-    var dataController: DataController!
+    var dataController = DataController.shared.viewContext
     var fetchedResultsController:NSFetchedResultsController<Boardgame>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        let scoreNew = Score(context: dataController.viewContext)
-        scoreNew.player = "Mark"
-        scoreNew.score = 12
-        try? dataController.viewContext.save()
     }
     
 

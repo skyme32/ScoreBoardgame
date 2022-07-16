@@ -18,7 +18,8 @@ class EditScoreViewController: UIViewController {
     @IBOutlet weak var editTextComment: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var dataController:DataController!
+    var dataController = DataController.shared.viewContext
+    var fetchedResultsController:NSFetchedResultsController<Boardgame>!
     var gameboard: DetailBoardgame!
     var scoreList: [Score] = []
 
@@ -28,29 +29,32 @@ class EditScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupFetchedResultsController()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        fetchedResultsController = nil
+    }
         
     
     // MARK: Action buttons
     
     @IBAction func buttonSaveSacore(_ sender: Any) {
-
-        let boardgame = Boardgame(context: dataController.viewContext)
+        saveBoardGame()
         
-        boardgame.name = gameboard.name
-        boardgame.average_rating = gameboard.averageRating
-        boardgame.description_preview = gameboard.descriptionPreview
-        boardgame.image_url = gameboard.imageUrl
-        boardgame.players = gameboard.players
-        boardgame.playtime = gameboard.playtime
-        boardgame.year_published = Int16(gameboard.yearPublished)
-        boardgame.rules_url = gameboard.rulesUrl
-        boardgame.url = gameboard.url
-        boardgame.photo = gameboard.imageGame
-        
-        try? dataController.viewContext.save()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "InitialTab")
+        self.view.window?.rootViewController = initialViewController
     }
     
     @IBAction func buttonAddPlayer(_ sender: Any) {
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddPlayer") as! AddPlayerViewController
         vc.completionHandler = { name, score in
             self.addRefreshNewPlayer(name: name!, score: score!)
@@ -98,12 +102,56 @@ extension EditScoreViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension EditScoreViewController: NSFetchedResultsControllerDelegate {
     
+    fileprivate func setupFetchedResultsController() {
+        let fetchRequest:NSFetchRequest<Boardgame> = Boardgame.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "id == %@", gameboard.id)
+        fetchRequest.predicate = predicate
+        
+        fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DataController.shared.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
+    
     func addScore(playerName: String, score: Int32) -> Score {
-        let scoreNew = Score(context: dataController.viewContext)
+        let scoreNew = Score(context: dataController)
         scoreNew.player = playerName
         scoreNew.score = score
         
         return scoreNew
+    }
+    
+    func saveBoardGame() {
+        
+        if fetchedResultsController.fetchedObjects!.count < 1 {
+            let boardgame = Boardgame(context: dataController)
+            
+            boardgame.id = gameboard.id
+            boardgame.name = gameboard.name
+            boardgame.average_rating = gameboard.averageRating
+            boardgame.description_preview = gameboard.descriptionPreview
+            boardgame.image_url = gameboard.imageUrl
+            boardgame.players = gameboard.players
+            boardgame.playtime = gameboard.playtime
+            boardgame.year_published = Int16(gameboard.yearPublished)
+            boardgame.rules_url = gameboard.rulesUrl
+            boardgame.url = gameboard.url
+            boardgame.photo = gameboard.imageGame
+            
+            try? dataController.save()
+        }
     }
     
 }

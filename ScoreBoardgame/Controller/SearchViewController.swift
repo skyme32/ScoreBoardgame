@@ -13,7 +13,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var currentSearchTask: URLSessionDataTask?
-    var dataController: DataController!
     var gameboards = [Gameboard]()
     var selectedIndex = 0
 
@@ -25,7 +24,6 @@ class SearchViewController: UIViewController {
         if segue.identifier == "infoBoardgame" {
             let detailVC = segue.destination as! InfoBoardViewController
             detailVC.gameboard = DetailBoardgame(gameboard: gameboards[selectedIndex])
-            detailVC.dataController = dataController
         }
     }
 }

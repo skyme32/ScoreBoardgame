@@ -36,6 +36,7 @@ struct DetailBoardgame {
 
     init(gameboard: Gameboard) {
         
+        self.id = gameboard.id
         self.name = gameboard.name
         self.averageRating = gameboard.averageRating ?? 0.0
         self.descriptionPreview = gameboard.descriptionPreview ?? ""
@@ -49,6 +50,7 @@ struct DetailBoardgame {
 
     init(boardgame: Boardgame) {
         
+        self.id = boardgame.id!
         self.name = boardgame.name!
         self.averageRating = boardgame.average_rating
         self.descriptionPreview = boardgame.description_preview!
