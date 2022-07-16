@@ -2,7 +2,7 @@
 //  ScoreViewController.swift
 //  ScoreBoardgame
 //
-//  Created by Marcos Mejias on 3/4/22.
+//  Created by Marcos Mejias on 16/7/22.
 //
 
 import UIKit
@@ -11,12 +11,16 @@ import CoreData
 class ScoreViewController: UIViewController {
     
     var dataController:DataController!
-    var fetchedController:NSFetchedResultsController<Boardgame>!
+    var fetchedResultsController:NSFetchedResultsController<Boardgame>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let scoreNew = Score(context: dataController.viewContext)
+        scoreNew.player = "Mark"
+        scoreNew.score = 12
+        try? dataController.viewContext.save()
     }
     
 

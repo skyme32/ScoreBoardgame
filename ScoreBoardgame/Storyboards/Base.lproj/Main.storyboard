@@ -285,7 +285,7 @@
         <!--Edit Boardgame-->
         <scene sceneID="VUv-R2-HBI">
             <objects>
-                <viewController storyboardIdentifier="EditScore" title="Edit Boardgame" id="ifl-ag-2Du" customClass="EditScoreViewController" customModule="ScoreBoardgame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditScore" title="Edit Boardgame" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ifl-ag-2Du" customClass="EditScoreViewController" customModule="ScoreBoardgame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6YI-rk-cDA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -640,7 +640,7 @@
         <!--ScoreBoardgames-->
         <scene sceneID="mge-P1-9qI">
             <objects>
-                <viewController storyboardIdentifier="ScoreBoardgames" title="ScoreBoardgames" id="HDc-6B-2Q8" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScoreList" title="ScoreBoardgames" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HDc-6B-2Q8" customClass="ScoreViewController" customModule="ScoreBoardgame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BGk-zR-vbz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
