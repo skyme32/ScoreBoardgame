@@ -20,6 +20,7 @@
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="creation_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="geolocation" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
@@ -34,7 +35,7 @@
     </entity>
     <elements>
         <element name="Boardgame" positionX="-63.31982421875" positionY="-16.202392578125" width="128" height="239"/>
-        <element name="Game" positionX="154.308837890625" positionY="-15.65155029296875" width="128" height="164"/>
+        <element name="Game" positionX="154.308837890625" positionY="-15.65155029296875" width="128" height="179"/>
         <element name="Score" positionX="360.75390625" positionY="-31.083984375" width="128" height="74"/>
     </elements>
 </model>

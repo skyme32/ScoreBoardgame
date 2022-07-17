@@ -23,7 +23,9 @@ class EditScoreViewController: UIViewController {
     var fetchedResultsBoardgame:NSFetchedResultsController<Boardgame>!
     var fetchedResultsGame:NSFetchedResultsController<Game>!
     var gameboard: DetailBoardgame!
-    var game: Game!
+    var gameEdit: Game!
+    var titleGame: String = ""
+    var photoGame: Data!
     var scoreList: [Score] = []
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D();
     lazy var geocoder = CLGeocoder()
@@ -38,10 +40,11 @@ class EditScoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if game == nil {
-            setupFetchedResultsController()
+        if gameEdit == nil {
+            setupFetchedResultsBoardGame()
         } else {
             refreshTextValues()
+            setupFetchedResultsGame()
         }
     }
     
@@ -49,7 +52,6 @@ class EditScoreViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         fetchedResultsBoardgame = nil
-        fetchedResultsGame = nil
     }
         
     
@@ -86,12 +88,14 @@ class EditScoreViewController: UIViewController {
     
     private func refreshTextValues() {
         
-        pickerDate.date = game.creation_date!
-        editTextTime.text = game.time
-        editTextLocation.text = game.geolocation
-        editTextComment.text = game.comment
+        titleGame = gameEdit.title!
+        photoGame = gameEdit.photo!
+        pickerDate.date = gameEdit.creation_date!
+        editTextTime.text = gameEdit.time
+        editTextLocation.text = gameEdit.geolocation
+        editTextComment.text = gameEdit.comment
         
-        for case let score as Score in game.scores!  {
+        for case let score as Score in gameEdit.scores!  {
             scoreList.append(score)
         }
         scoreList = scoreList.sorted(by: { $0.score > $1.score })
@@ -127,7 +131,7 @@ extension EditScoreViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension EditScoreViewController: NSFetchedResultsControllerDelegate {
     
-    fileprivate func setupFetchedResultsController() {
+    fileprivate func setupFetchedResultsBoardGame() {
         let fetchRequest:NSFetchRequest<Boardgame> = Boardgame.fetchRequest()
         
         let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
@@ -138,13 +142,38 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         
         fetchedResultsBoardgame = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: DataController.shared.viewContext,
+            managedObjectContext: dataController,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
+                
         fetchedResultsBoardgame.delegate = self
         do {
             try fetchedResultsBoardgame.performFetch()
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
+    
+    fileprivate func setupFetchedResultsGame() {
+        let fetchRequest:NSFetchRequest<Game> = Game.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "id == %@", gameEdit.id! as CVarArg)
+        fetchRequest.predicate = predicate
+        
+        fetchedResultsGame = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: dataController,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+                
+        fetchedResultsGame.delegate = self
+        do {
+            try fetchedResultsGame.performFetch()
         } catch {
             fatalError("The fetch could not be performed: \(error.localizedDescription)")
         }
@@ -158,8 +187,34 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         return scoreNew
     }
     
+    private func updateGameScore() {
+        
+        let indexPath = NSIndexPath(row: 0, section: 0)
+        let gameUpdate = fetchedResultsGame.object(at: indexPath as IndexPath)
+        
+        gameUpdate.geolocation = editTextLocation.text
+        gameUpdate.creation_date = pickerDate.date
+        gameUpdate.time = editTextTime.text
+        gameUpdate.geolocation = editTextLocation.text
+        gameUpdate.comment = editTextComment.text
+        gameUpdate.longitude = coordinate.longitude
+        gameUpdate.latitude = coordinate.latitude
+        gameUpdate.scores = nil
+        
+        for score in scoreList {
+            let scoreNew = Score(context: dataController)
+            scoreNew.player = score.player
+            scoreNew.score = score.score
+            
+            gameUpdate.addToScores(scoreNew)
+        }
+        
+        try? dataController.save()
+    }
+    
     private func saveGameScore(title: String, photo: Data) {
         let game = Game(context: dataController)
+        game.id = UUID()
         game.title = title
         game.creation_date = pickerDate.date
         game.photo = photo
@@ -182,7 +237,7 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
     
     private func saveBoardGame() {
         
-        if game == nil && fetchedResultsBoardgame.fetchedObjects!.count < 1 {
+        if gameEdit == nil && fetchedResultsBoardgame.fetchedObjects!.count < 1 {
             let boardgame = Boardgame(context: dataController)
             
             boardgame.id = gameboard.id
@@ -230,10 +285,10 @@ extension EditScoreViewController {
             }
         }
         
-        if (game == nil) {
+        if (gameEdit == nil) {
             saveGameScore(title: gameboard.name, photo: gameboard.imageGame)
         } else {
-            saveGameScore(title: game.title!, photo: game.photo!)
+            updateGameScore()
         }
     }
 }

@@ -55,7 +55,7 @@ class InfoGameViewController: UIViewController {
         
         if segue.identifier == "EditGameSegue" {
             let detailVC = segue.destination as! EditScoreViewController
-            detailVC.game = game
+            detailVC.gameEdit = game
         }
     }
     
