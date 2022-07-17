@@ -23,6 +23,7 @@ class EditScoreViewController: UIViewController {
     var fetchedResultsBoardgame:NSFetchedResultsController<Boardgame>!
     var fetchedResultsGame:NSFetchedResultsController<Game>!
     var gameboard: DetailBoardgame!
+    var game: Game!
     var scoreList: [Score] = []
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D();
     lazy var geocoder = CLGeocoder()
@@ -37,7 +38,11 @@ class EditScoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupFetchedResultsController()
+        if game == nil {
+            setupFetchedResultsController()
+        } else {
+            refreshTextValues()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -77,6 +82,19 @@ class EditScoreViewController: UIViewController {
             scoreList.append(addScore(playerName: name, score: Int32(score)!))
             tableView.reloadData()
         }
+    }
+    
+    private func refreshTextValues() {
+        
+        pickerDate.date = game.creation_date!
+        editTextTime.text = game.time
+        editTextLocation.text = game.geolocation
+        editTextComment.text = game.comment
+        
+        for case let score as Score in game.scores!  {
+            scoreList.append(score)
+        }
+        scoreList = scoreList.sorted(by: { $0.score > $1.score })
     }
 }
 
@@ -140,11 +158,11 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
         return scoreNew
     }
     
-    private func saveGameScore() {
+    private func saveGameScore(title: String, photo: Data) {
         let game = Game(context: dataController)
-        game.title = gameboard.name
+        game.title = title
         game.creation_date = pickerDate.date
-        game.photo = gameboard.imageGame
+        game.photo = photo
         game.time = editTextTime.text
         game.geolocation = editTextLocation.text
         game.comment = editTextComment.text
@@ -158,15 +176,13 @@ extension EditScoreViewController: NSFetchedResultsControllerDelegate {
             
             game.addToScores(scoreNew)
         }
-        
-        print(coordinate)
-        
+                
         try? dataController.save()
     }
     
     private func saveBoardGame() {
         
-        if fetchedResultsBoardgame.fetchedObjects!.count < 1 {
+        if game == nil && fetchedResultsBoardgame.fetchedObjects!.count < 1 {
             let boardgame = Boardgame(context: dataController)
             
             boardgame.id = gameboard.id
@@ -214,6 +230,10 @@ extension EditScoreViewController {
             }
         }
         
-        saveGameScore()
+        if (game == nil) {
+            saveGameScore(title: gameboard.name, photo: gameboard.imageGame)
+        } else {
+            saveGameScore(title: game.title!, photo: game.photo!)
+        }
     }
 }

@@ -833,7 +833,7 @@
                                 <rect key="frame" x="0.0" y="404" width="414" height="318"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kC5-kz-enT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameSocoreViewCell" id="kC5-kz-enT" customClass="GameSocoreViewCell" customModule="ScoreBoardgame" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="50.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kC5-kz-enT" id="zMP-ZC-ySZ">
@@ -841,20 +841,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwc-xZ-CVk">
-                                                    <rect key="frame" x="20" y="11" width="47" height="28.5"/>
+                                                    <rect key="frame" x="20" y="11" width="240" height="28.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="SbB-G3-vxS"/>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="kLu-PS-i9z"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="kLu-PS-i9z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lT8-ut-VtU">
-                                                    <rect key="frame" x="349.5" y="11" width="44.5" height="28.5"/>
+                                                    <rect key="frame" x="314" y="11" width="80" height="28.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="O6B-gV-gav"/>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="aia-HK-aTd"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="aia-HK-aTd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -865,13 +865,22 @@
                                                 <constraint firstItem="nwc-xZ-CVk" firstAttribute="top" secondItem="zMP-ZC-ySZ" secondAttribute="topMargin" id="9Ub-1z-CWa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="nwc-xZ-CVk" secondAttribute="bottom" id="IGY-cS-Tha"/>
                                                 <constraint firstItem="lT8-ut-VtU" firstAttribute="top" secondItem="zMP-ZC-ySZ" secondAttribute="topMargin" id="LrC-dL-gwI"/>
+                                                <constraint firstItem="lT8-ut-VtU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nwc-xZ-CVk" secondAttribute="trailing" constant="8" symbolic="YES" id="REe-fa-a8P"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="lT8-ut-VtU" secondAttribute="bottom" id="gkt-AM-bFS"/>
                                                 <constraint firstItem="nwc-xZ-CVk" firstAttribute="leading" secondItem="zMP-ZC-ySZ" secondAttribute="leadingMargin" id="lwb-Hb-QUG"/>
                                                 <constraint firstItem="lT8-ut-VtU" firstAttribute="trailing" secondItem="zMP-ZC-ySZ" secondAttribute="trailingMargin" id="rbO-U4-2sK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="playerLabel" destination="nwc-xZ-CVk" id="oMp-NA-1es"/>
+                                            <outlet property="scoreLabel" destination="lT8-ut-VtU" id="Kq9-r4-x7S"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sTN-P5-3dr" id="fBJ-yQ-y7g"/>
+                                    <outlet property="delegate" destination="sTN-P5-3dr" id="gPl-84-nPt"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tvj-Ye-uEV"/>
@@ -903,26 +912,31 @@
                             <constraint firstItem="4IF-k0-paJ" firstAttribute="leading" secondItem="Wxb-AH-Igi" secondAttribute="trailing" constant="8" id="dQs-9v-gV2"/>
                             <constraint firstItem="aGp-re-gQ4" firstAttribute="leading" secondItem="cpc-Bz-Fij" secondAttribute="trailing" constant="8" id="dmf-kx-bgB"/>
                             <constraint firstItem="hN9-w7-XA7" firstAttribute="top" secondItem="Wxb-AH-Igi" secondAttribute="bottom" constant="8" id="dml-MW-WXh"/>
-                            <constraint firstItem="tvj-Ye-uEV" firstAttribute="trailing" secondItem="TJH-tA-rz7" secondAttribute="trailing" constant="16" id="n0m-hj-edD"/>
+                            <constraint firstItem="tvj-Ye-uEV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TJH-tA-rz7" secondAttribute="trailing" id="n0m-hj-edD"/>
                             <constraint firstItem="jhk-vI-C7r" firstAttribute="top" secondItem="C4j-YX-fmd" secondAttribute="bottom" id="qLC-Sh-J5k"/>
                             <constraint firstItem="mz5-Dq-aS3" firstAttribute="leading" secondItem="hN9-w7-XA7" secondAttribute="trailing" constant="8" id="qzv-FF-Jy3"/>
                             <constraint firstItem="Tbl-sT-e1E" firstAttribute="top" secondItem="QBm-Zp-Bjy" secondAttribute="bottom" id="uG4-mI-Ggc"/>
                             <constraint firstItem="tvj-Ye-uEV" firstAttribute="trailing" secondItem="mz5-Dq-aS3" secondAttribute="trailing" constant="16" id="uYd-m1-da2"/>
                             <constraint firstItem="cpc-Bz-Fij" firstAttribute="leading" secondItem="tvj-Ye-uEV" secondAttribute="leading" constant="16" id="wZZ-j9-iuF"/>
                             <constraint firstItem="Wxb-AH-Igi" firstAttribute="top" secondItem="cpc-Bz-Fij" secondAttribute="bottom" constant="8" id="yLF-BB-txh"/>
+                            <constraint firstItem="TJH-tA-rz7" firstAttribute="leading" secondItem="QBm-Zp-Bjy" secondAttribute="trailing" constant="258.5" id="yn4-6J-clj"/>
                             <constraint firstItem="Wxb-AH-Igi" firstAttribute="leading" secondItem="tvj-Ye-uEV" secondAttribute="leading" constant="16" id="z6O-tB-cYK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title Game" id="ljh-hl-rAY">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" image="highlighter" catalog="system" id="JEi-nA-4xA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" image="highlighter" catalog="system" id="JEi-nA-4xA">
+                            <connections>
+                                <segue destination="ifl-ag-2Du" kind="show" identifier="EditGameSegue" id="2GP-Ta-eDM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="commentsLabel" destination="jhk-vI-C7r" id="dJt-R8-2Xe"/>
-                        <outlet property="dateLabel" destination="4IF-k0-paJ" id="3EN-1f-Q7u"/>
-                        <outlet property="location" destination="aGp-re-gQ4" id="MUg-hk-y7J"/>
-                        <outlet property="mapView" destination="zMh-uY-fhe" id="Wzh-lg-hTS"/>
-                        <outlet property="tableView" destination="Tbl-sT-e1E" id="tbf-oY-koh"/>
-                        <outlet property="timeLAbel" destination="mz5-Dq-aS3" id="VkC-Zz-8yU"/>
+                        <outlet property="commentsLabel" destination="jhk-vI-C7r" id="Vf1-qm-lIa"/>
+                        <outlet property="dateLabel" destination="4IF-k0-paJ" id="7fj-2Z-UHz"/>
+                        <outlet property="location" destination="aGp-re-gQ4" id="73B-dz-Db8"/>
+                        <outlet property="mapView" destination="zMh-uY-fhe" id="nTc-98-wH0"/>
+                        <outlet property="tableView" destination="Tbl-sT-e1E" id="g6q-jh-1mJ"/>
+                        <outlet property="timeLAbel" destination="mz5-Dq-aS3" id="zbJ-wu-8XK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X2o-mZ-0JC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1024,6 +1038,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="2GP-Ta-eDM"/>
         <segue reference="3x0-iv-rfK"/>
     </inferredMetricsTieBreakers>
     <resources>
