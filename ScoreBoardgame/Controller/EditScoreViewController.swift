@@ -69,17 +69,18 @@ class EditScoreViewController: UIViewController {
     
     @IBAction func buttonAddPlayer(_ sender: Any) {
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AddPlayer") as! AddPlayerViewController
-        vc.completionHandler = { name, score in
-            self.addRefreshNewPlayer(name: name!, score: score!)
-        }
-        present(vc, animated: true)
+        segueAddPlayer(index: -1, score: nil)
     }
     
     
     // MARK: Private functions
     
-    private func addRefreshNewPlayer(name: String, score: String) {
+    private func addRefreshNewPlayer(name: String, score: String, index: Int) {
+        
+        if index > -1 {
+            scoreList.remove(at: index)
+        }
+        
         if !name.isEmpty && !score.isEmpty {
             scoreList.append(addScore(playerName: name, score: Int32(score)!))
             tableView.reloadData()
@@ -99,6 +100,17 @@ class EditScoreViewController: UIViewController {
             scoreList.append(score)
         }
         scoreList = scoreList.sorted(by: { $0.score > $1.score })
+    }
+    
+    private func segueAddPlayer(index: Int, score: Score?) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AddPlayer") as! AddPlayerViewController
+        vc.indexList = index
+        vc.score = score
+        vc.completionHandler = { name, score, index in
+            self.addRefreshNewPlayer(name: name!, score: score!, index: index!)
+        }
+        present(vc, animated: true)
     }
 }
 
@@ -123,6 +135,11 @@ extension EditScoreViewController: UITableViewDataSource, UITableViewDelegate {
         cell.score.text = String(score.score)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        segueAddPlayer(index: indexPath.item, score: scoreList[indexPath.row])
     }
 }
 

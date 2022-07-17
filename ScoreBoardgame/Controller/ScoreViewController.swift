@@ -94,10 +94,7 @@ extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameViewCell", for: indexPath) as! GameViewCell
         cell.title.text = game.title
-        
-        if let creationDate = game.creation_date {
-            cell.date.text = dateFormatter.string(from: creationDate)
-        }
+        cell.date.text = dateFormatter.string(from: game.creation_date!)
         
         if (game.photo != nil) {
             cell.imageGame.image = UIImage(data: game.photo!)
@@ -105,18 +102,6 @@ extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
     
         return cell
     }
-    
-    /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let gameToPrint = fetchedResultsController.object(at: indexPath)
-        
-        print("\(gameToPrint)")
-        
-        for case let animal as Score in gameToPrint.scores!  {
-            print("\(animal.score) - \(animal.player!)")
-        }
-    }
-     */
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
