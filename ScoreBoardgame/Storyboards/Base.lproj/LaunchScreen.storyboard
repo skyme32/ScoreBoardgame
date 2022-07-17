@@ -16,30 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score BoardGame" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSw-h0-dPo">
-                                <rect key="frame" x="88" y="528" width="238" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon_boardgame" translatesAutoresizingMaskIntoConstraints="NO" id="EsT-d1-mhH">
-                                <rect key="frame" x="0.0" y="325" width="414" height="195"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-zt-Oe0">
+                                <rect key="frame" x="82" y="323" width="250" height="250"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon_boardgame" translatesAutoresizingMaskIntoConstraints="NO" id="EsT-d1-mhH">
+                                        <rect key="frame" x="36" y="0.0" width="195" height="195"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="195" id="8yU-Gg-l8T"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score BoardGame" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qM-r5-5Xn">
+                                        <rect key="frame" x="8" y="195" width="250" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="Jge-tO-MtS"/>
-                                    <constraint firstAttribute="width" constant="414" id="tRS-Eh-3by"/>
+                                    <constraint firstAttribute="height" constant="250" id="3vV-CK-NNr"/>
+                                    <constraint firstItem="EsT-d1-mhH" firstAttribute="top" secondItem="8bs-zt-Oe0" secondAttribute="top" id="Hmp-MF-kNT"/>
+                                    <constraint firstAttribute="width" constant="250" id="INP-7K-h8Y"/>
+                                    <constraint firstItem="2qM-r5-5Xn" firstAttribute="top" secondItem="EsT-d1-mhH" secondAttribute="bottom" id="oJk-Cd-5Sk"/>
+                                    <constraint firstItem="EsT-d1-mhH" firstAttribute="centerX" secondItem="2qM-r5-5Xn" secondAttribute="centerX" id="qez-98-762"/>
+                                    <constraint firstItem="EsT-d1-mhH" firstAttribute="leading" secondItem="8bs-zt-Oe0" secondAttribute="leading" constant="36" id="sg1-FU-exO"/>
+                                    <constraint firstAttribute="trailing" secondItem="EsT-d1-mhH" secondAttribute="trailing" constant="19" id="zxd-hz-TmV"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EsT-d1-mhH" secondAttribute="trailing" id="79o-rO-W8G"/>
-                            <constraint firstItem="EsT-d1-mhH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CmW-wR-5dh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XSw-h0-dPo" secondAttribute="bottom" constant="302" id="LYo-9a-erW"/>
-                            <constraint firstItem="EsT-d1-mhH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="281" id="P8t-nF-7h4"/>
-                            <constraint firstItem="XSw-h0-dPo" firstAttribute="top" secondItem="EsT-d1-mhH" secondAttribute="bottom" constant="8" symbolic="YES" id="SKA-j9-FHS"/>
-                            <constraint firstItem="XSw-h0-dPo" firstAttribute="centerX" secondItem="EsT-d1-mhH" secondAttribute="centerX" id="yWh-Lt-qNO"/>
-                            <constraint firstItem="XSw-h0-dPo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="yks-Lf-uZv"/>
+                            <constraint firstItem="8bs-zt-Oe0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gya-uw-0WJ"/>
+                            <constraint firstItem="8bs-zt-Oe0" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="r6X-TV-VSH"/>
                         </constraints>
                     </view>
                 </viewController>
