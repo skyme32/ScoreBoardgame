@@ -13,6 +13,7 @@ class AddPlayerViewController: UIViewController {
     @IBOutlet weak var editTextScore: UITextField!
     
     var indexList = -1
+    var flagKeyBoard = false;
     var score: Score!
     
     public var completionHandler: ((String?, String?, Int?) -> Void)?
@@ -23,8 +24,17 @@ class AddPlayerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
     
     @IBAction func addPlayer(_ sender: Any) {
@@ -52,5 +62,42 @@ class AddPlayerViewController: UIViewController {
             editTextScore.text = String(score.score)
         }
     }
+}
+
+// MARK: KeyBoard controller
+
+extension AddPlayerViewController {
     
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if !flagKeyBoard {
+            if editTextName.isFirstResponder || editTextScore.isFirstResponder {
+                view.frame.origin.y -= getKeyboardHeight(notification) - editTextScore.frame.height - editTextName.frame.height
+            }
+            flagKeyBoard = true
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        if !flagKeyBoard {
+            if editTextName.isFirstResponder || editTextScore.isFirstResponder {
+                view.frame.origin.y = 0
+            }
+        }
+    }
+
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
 }
