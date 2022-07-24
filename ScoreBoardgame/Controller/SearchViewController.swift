@@ -11,6 +11,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+
     
     var currentSearchTask: URLSessionDataTask?
     var gameboards = [Gameboard]()
@@ -26,15 +28,25 @@ class SearchViewController: UIViewController {
             detailVC.gameboard = DetailBoardgame(gameboard: gameboards[selectedIndex])
         }
     }
+    
+    
+    // MARK: Private Methods
+    
+    private func indicatorStatus(status: Bool) {
+        self.indicatorView.startAnimating()
+        self.indicatorView.isHidden = !status
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.indicatorStatus(status: true)
         
         if searchText == "" {
             gameboards.removeAll()
             self.tableView.reloadData()
+            self.indicatorStatus(status: false)
             return
         }
         
@@ -42,6 +54,7 @@ extension SearchViewController: UISearchBarDelegate {
             self.gameboards = gamerboards
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.indicatorStatus(status: false)
             }
         }
     }

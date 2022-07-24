@@ -81,6 +81,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hR1-WV-d24">
                                 <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" id="yvH-7g-CIB">
+                                    <rect key="frame" x="0.0" y="110.5" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameTableViewCell" id="At9-AS-5BT">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -111,6 +115,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search Boardgames" id="S1R-Vt-5qc"/>
                     <connections>
+                        <outlet property="indicatorView" destination="yvH-7g-CIB" id="Evc-cW-mCm"/>
                         <outlet property="searchBar" destination="Erh-OA-UHx" id="dkt-WL-1Uw"/>
                         <outlet property="tableView" destination="hR1-WV-d24" id="nJt-FK-j6Y"/>
                         <segue destination="xEC-Ox-1q3" kind="show" identifier="infoBoardgame" id="3x0-iv-rfK"/>
@@ -1037,7 +1042,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2GP-Ta-eDM"/>
+        <segue reference="SIV-uQ-tce"/>
         <segue reference="3x0-iv-rfK"/>
     </inferredMetricsTieBreakers>
     <resources>
