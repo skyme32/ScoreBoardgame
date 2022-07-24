@@ -29,9 +29,15 @@ class AddPlayerViewController: UIViewController {
     
     @IBAction func addPlayer(_ sender: Any) {
         
-        completionHandler?(editTextName.text, editTextScore.text, indexList)
-        
-        dismiss(animated: true, completion: nil)
+        let num = Int(editTextScore.text ?? "")
+        if num != nil && !editTextName.text!.isEmpty && !editTextScore.text!.isEmpty {
+            completionHandler?(editTextName.text, editTextScore.text, indexList)
+            dismiss(animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Score Alert", message: "The player and score couldn't empty, and score don't accept test, only numbers.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func cancelAddPlayer(_ sender: Any) {
