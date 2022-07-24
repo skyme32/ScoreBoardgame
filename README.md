@@ -27,6 +27,12 @@ You can delete the Game and Favorites if you want. If you select the score into 
 <img src="https://github.com/skyme32/ScoreBoardgame/blob/main/img/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202022-07-22%20at%2020.19.40.png?raw=true" width=30%>
 <img src="https://github.com/skyme32/ScoreBoardgame/blob/main/img/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202022-07-22%20at%2020.19.53.png?raw=true" width=30%>
 
+# Build
+
+* Xcode: 12.x
+* Swift: 5
+* IOS: 15.2
+
 # Demo
 
 <img src="https://github.com/skyme32/ScoreBoardgame/blob/main/img/Simulator%20Screen%20Recording%20-%20iPhone%2011%20-%202022-07-22%20at%2021.02.47.gif?raw=true" width=30%>
