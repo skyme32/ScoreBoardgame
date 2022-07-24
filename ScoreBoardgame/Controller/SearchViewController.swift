@@ -51,6 +51,15 @@ extension SearchViewController: UISearchBarDelegate {
         }
         
         AtlasClient.getSearchGameboardList(query: searchText) { gamerboards, error in
+            
+            if (error != nil) {
+                let alert = UIAlertController(title: "Network Alert", message: "It's not possible to download BoardGames data.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true, completion: nil)
+                self.indicatorStatus(status: false)
+                return
+            }
+            
             self.gameboards = gamerboards
             DispatchQueue.main.async {
                 self.tableView.reloadData()
